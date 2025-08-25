@@ -1,47 +1,32 @@
-class Complex {
-    double real;      
-    double imaginary; 
+import java.io.*;
 
-    Complex(double r, double i) {
-        real = r;
-        imaginary = i;
+public class Complex {
+    double real;
+    double imag;
+
+    // Constructor
+    public Complex(double real, double imag) {
+        this.real = real;
+        this.imag = imag;
     }
 
-    void display() {
-        if (imaginary >= 0)
-            System.out.println(real + " + " + imaginary + "i");
-        else
-            System.out.println(real + " - " + (-imaginary) + "i");
+    // Function to add two complex numbers
+    public static Complex add(Complex n1, Complex n2) {
+        Complex temp = new Complex(0.0, 0.0);
+        temp.real = n1.real + n2.real;
+        temp.imag = n1.imag + n2.imag;
+        return temp;
     }
 
-    Complex add(Complex c) {
-        return new Complex(real + c.real, imaginary + c.imaginary);
-    }
-
-    Complex subtract(Complex c) {
-        return new Complex(real - c.real, imaginary - c.imaginary);
-    }
-}
-
-public class ComplexNumberExample {
     public static void main(String[] args) {
-        Complex c1 = new Complex(3, 4);   
-        Complex c2 = new Complex(1, -2);  
+        Complex n1 = new Complex(2.3, 4.5);
+        Complex n2 = new Complex(3.4, 5.0);
+        Complex temp;
 
-        System.out.print("First Complex Number: ");
-        c1.display();
+        // Call add function
+        temp = add(n1, n2);
 
-        System.out.print("Second Complex Number: ");
-        c2.display();
-
-        // Adding
-        Complex sum = c1.add(c2);
-        System.out.print("Sum: ");
-        sum.display();
-
-        // Subtracting
-        Complex diff = c1.subtract(c2);
-        System.out.print("Difference: ");
-        diff.display();
+        // Display result
+        System.out.printf("Sum = %.1f + %.1fi\n", temp.real, temp.imag);
     }
 }
